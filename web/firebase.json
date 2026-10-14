@@ -1,20 +1,13 @@
 {
-  "firestore": {
-    "rules": "api/firestore.rules",
-    "indexes": "api/firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "api/storage.rules"
-  },
   "hosting": {
-    "public": "web/dist",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "predeploy": [
-      "node web/scripts/predeploy-check.mjs"
+      "node scripts/predeploy-check.mjs"
     ],
     "rewrites": [
       {

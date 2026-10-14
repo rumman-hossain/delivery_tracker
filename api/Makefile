@@ -8,7 +8,7 @@ UNIT_PKGS := ./internal/domain/... ./internal/config/... ./internal/auth/... \
 	./internal/handlers/... ./internal/httpx/... ./internal/media/... ./cmd/seed/...
 
 .PHONY: help run build fmt vet lint tidy test test-race bench test-integration \
-	emulator emulator-stop emulator-logs rules-test image loadtest seed-admin
+	emulator emulator-stop emulator-logs image loadtest seed-admin seed-demo
 
 help:                ## list targets
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-18s %s\n", $$1, $$2}'
@@ -57,9 +57,6 @@ emulator-stop:       ## stop the emulator
 emulator-logs:       ## emulator logs
 	docker logs $(EMULATOR_NAME)
 
-rules-test:          ## security-rules tests (needs a JDK)
-	npm test --prefix ../rules-tests
-
 image:               ## build the linux/amd64 image: make image IMAGE=<registry>/<name>:<tag>
 	docker build --platform linux/amd64 -t $(IMAGE) .
 
@@ -67,5 +64,8 @@ loadtest:            ## read-only load: make loadtest BASE_URL=... TOKEN=...
 	go run ./cmd/loadtest -base-url=$(BASE_URL) -token=$(TOKEN) \
 		-concurrency=$(or $(CONCURRENCY),10) -duration=$(or $(DURATION),30s)
 
-seed-admin:          ## create the first superadmin; password is read from stdin
-	GOOGLE_CLOUD_PROJECT=$(GOOGLE_CLOUD_PROJECT) go run ./cmd/seed -email=$(EMAIL)
+seed-admin:          ## create the first superadmin: make seed-admin EMAIL=... NAME="..." PHONE=... (password from stdin)
+	GOOGLE_CLOUD_PROJECT=$(GOOGLE_CLOUD_PROJECT) go run ./cmd/seed -email=$(EMAIL) -name="$(NAME)" -phone="$(PHONE)"
+
+seed-demo:           ## load the demo places from cmd/seed/locations.json
+	GOOGLE_CLOUD_PROJECT=$(GOOGLE_CLOUD_PROJECT) go run ./cmd/seed -locations

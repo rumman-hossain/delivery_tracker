@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars (gitignored) and fill in.
+
+# Globally unique GCP project id
+project_id = "your-project-id"
+
+# gcloud billing accounts list
+billing_account_id = "XXXXXX-XXXXXX-XXXXXX"
+
+# Firebase Hosting site id; the app is served at https://<site_id>.web.app
+site_id = "your-site-id"
+
+# Optional
+# region               = "us-central1"
+# custom_domains       = ["app.example.com"]
+# photo_retention_days = 365
+# budget_amount        = 10

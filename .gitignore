@@ -15,3 +15,9 @@ node_modules/
 .firebaserc
 *.log
 bin/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!*.tfvars.example

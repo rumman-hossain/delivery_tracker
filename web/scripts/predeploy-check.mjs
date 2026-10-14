@@ -117,7 +117,7 @@ if (existsSync(swPath)) {
 
 const UPLOAD_HOST = 'https://storage.googleapis.com'
 
-const firebaseJson = JSON.parse(readFileSync(join(here, '..', '..', 'firebase.json'), 'utf8'))
+const firebaseJson = JSON.parse(readFileSync(join(here, '..', 'firebase.json'), 'utf8'))
 
 const cspHeaders = firebaseJson.hosting.headers
   .filter((block) => block.source === '**')
