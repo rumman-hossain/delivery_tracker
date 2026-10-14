@@ -1,0 +1,5 @@
+/.env
+/.env.*
+/sa.json
+/server
+*.test

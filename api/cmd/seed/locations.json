@@ -1,0 +1,60 @@
+{
+  "locations": [
+    {
+      "kind": "warehouse",
+      "name": "Central Depot",
+      "address": "1 Depot Road",
+      "lat": 51.5155,
+      "lng": -0.141
+    },
+    {
+      "kind": "warehouse",
+      "name": "Cold Storage",
+      "address": "22 Harbour Lane",
+      "lat": 51.5072,
+      "lng": -0.165
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market North",
+      "address": "14 North Street",
+      "lat": 51.529,
+      "lng": -0.1255
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market East",
+      "address": "8 East Avenue",
+      "lat": 51.515,
+      "lng": -0.072
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market South",
+      "address": "31 South Parade",
+      "lat": 51.495,
+      "lng": -0.1
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market West",
+      "address": "5 West Row",
+      "lat": 51.511,
+      "lng": -0.19
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market Riverside",
+      "address": "40 River Walk",
+      "lat": 51.504,
+      "lng": -0.118
+    },
+    {
+      "kind": "shop",
+      "name": "Corner Market Park",
+      "address": "12 Park Close",
+      "lat": 51.523,
+      "lng": -0.156
+    }
+  ]
+}

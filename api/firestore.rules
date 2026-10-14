@@ -1,0 +1,32 @@
+rules_version='2';
+
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function role()        { return request.auth != null ? request.auth.token.get('role', '') : ''; }
+    function signedIn()    { return request.auth != null; }
+    function isSuperadmin(){ return role() == 'superadmin'; }
+    function isAdmin()     { return role() == 'admin'; }
+    function isDriver()    { return role() == 'driver'; }
+
+    function isOperator()  { return isAdmin() || isSuperadmin(); }
+
+    match /{document=**} { allow write: if false; }
+
+    match /users/{uid} {
+      allow read: if isOperator() || (signedIn() && request.auth.uid == uid);
+    }
+
+    match /shops/{id}  { allow read: if isOperator(); }
+    match /routes/{id} { allow read: if isOperator(); }
+    match /config/{id} { allow read: if isOperator(); }
+
+    match /trips/{tripId} {
+      allow read: if isOperator() || (isDriver() && resource.data.driverUid == request.auth.uid);
+
+      match /events/{eventId} {
+        allow read: if isOperator() || (isDriver() &&
+          get(/databases/$(db)/documents/trips/$(tripId)).data.driverUid == request.auth.uid);
+      }
+    }
+  }
+}
