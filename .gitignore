@@ -1,0 +1,17 @@
+.DS_Store
+
+# Go
+/api/sa.json
+/api/server
+/api/.env
+# Firebase CLI deploy cache
+.firebase/
+# Node
+node_modules/
+/web/dist/
+/web/.env
+/web/.env.local
+/web/public/map/
+.firebaserc
+*.log
+bin/
